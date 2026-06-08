@@ -63,13 +63,13 @@ Each challenge folder has:
 
 ## 🏆 Scoring
 
-| # | Challenge | Difficulty | Points |
-|---|-----------|------------|--------|
-| 1 | Meet Your Agent | ⭐ | 10 |
-| 2 | First Investigation | ⭐⭐ | 20 |
-| 3 | Stress & Diagnose | ⭐⭐⭐ | 30 |
-| 4 | Bad Deploy Detective | ⭐⭐⭐⭐ | 40 |
-| 5 | Build Your Own | 🚀 | 🏆 Best one gets a shoutout! |
+| # | Challenge | Difficulty |
+|---|-----------|------------|
+| 1 | Meet Your Agent | ⭐ |
+| 2 | First Investigation | ⭐⭐ |
+| 3 | Stress & Diagnose | ⭐⭐⭐ |
+| 4 | Bad Deploy Detective | ⭐⭐⭐⭐ |
+| 5 | Build Your Own | 🚀 Best one gets a shoutout! |
 
 ---
 
