@@ -1,29 +1,38 @@
-"""
-Challenge 5 (Innovate): Build Your Own MCP-Powered Agent
+from strands import Agent
+from strands.tools.mcp import MCPClient
+from mcp import StdioServerParameters, stdio_client
 
-YOUR TASK:
-  Build an innovative agent from scratch that connects to any MCP server.
-  The most creative and useful agent gets a special shoutout! 🏆
+MODEL = "us.amazon.nova-pro-v1:0"
 
-RULES:
-  - Must use Strands Agents SDK
-  - Must use at least one MCP server
-  - Must use Amazon Nova Pro (or any Bedrock model)
-  - Must have an interactive chat loop
-  - Must be YOUR OWN idea — be creative!
+aws_docs_mcp = MCPClient(
+    lambda: stdio_client(
+        StdioServerParameters(
+            command="awslabs.aws-documentation-mcp-server"
+        )
+    )
+)
 
-EXAMPLE MCP SERVERS:
-  pip install awslabs.aws-documentation-mcp-server   # AWS Docs
-  uvx awslabs.cdk-mcp-server@latest                  # AWS CDK
-  uvx awslabs.cost-analysis-mcp-server@latest        # AWS Pricing
+with aws_docs_mcp:
+    tools = aws_docs_mcp.list_tools_sync()
 
-BROWSE MORE: https://github.com/modelcontextprotocol/servers
+    agent = Agent(
+        model=MODEL,
+        tools=tools,
+        system_prompt="""
+        You are an AWS Learning Assistant.
+        Explain AWS concepts simply.
+        """
+    )
 
-RESOURCES:
-  - Strands MCP docs: https://strandsagents.com/latest/user-guide/concepts/tools/mcp-tools/
-  - AWS MCP servers: https://github.com/awslabs/mcp
+    print("☁️ AWS Learning Assistant")
+    print("Type quit to exit.\n")
 
-Build something that makes us go "whoa!" 🚀
-"""
+    while True:
+        user_input = input("You: ")
 
-# Your code here — build the entire agent from scratch!
+        if user_input.lower() == "quit":
+            break
+
+        print("\nAssistant:\n")
+        print(agent(user_input))
+        print()
